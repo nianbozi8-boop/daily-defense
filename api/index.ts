@@ -2,6 +2,7 @@ import express from "express";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import { getCuratedCatholicReply, getCuratedBibleSearchResults } from "./catholicKnowledgeEngine.ts";
+import { DAILY_CATHOLIC_QUOTES } from "../src/data/dailyQuotesData.ts";
 
 dotenv.config();
 
@@ -957,13 +958,13 @@ Return strictly a valid JSON array of objects with these keys:
     }
   }
 
-  let filtered = BASELINE_QUOTES;
+  let filtered = DAILY_CATHOLIC_QUOTES;
   if (requestedCategory === "scientists") {
-    filtered = BASELINE_QUOTES.filter((q) => q.category === "catholic_scientist");
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "catholic_scientist");
   } else if (requestedCategory === "fathers") {
-    filtered = BASELINE_QUOTES.filter((q) => q.category === "church_father");
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "church_father");
   } else if (requestedCategory === "apologists") {
-    filtered = BASELINE_QUOTES.filter((q) => q.category === "apologetic_titan");
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "apologetic_titan");
   }
 
   return res.json({ quotes: filtered, liveGrounded: false });

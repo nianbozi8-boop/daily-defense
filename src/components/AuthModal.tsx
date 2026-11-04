@@ -88,10 +88,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         resetForm();
       }, 700);
     } catch (err: any) {
-      if (err?.code === "auth/popup-closed-by-user") {
+      const code = err?.code || "";
+      const msg = String(err?.message || "");
+      if (
+        code === "auth/popup-closed-by-user" ||
+        code === "auth/cancelled-popup-request" ||
+        msg.includes("popup-closed-by-user") ||
+        msg.includes("cancelled-popup-request")
+      ) {
         return;
       }
-      if (err?.code === "auth/popup-blocked") {
+      if (code === "auth/popup-blocked") {
         setErrorMessage("Popup blocked by browser. Please allow popups for this site.");
       } else {
         setErrorMessage(err?.message || "Failed to sign in with Google.");

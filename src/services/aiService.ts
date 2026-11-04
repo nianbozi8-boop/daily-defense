@@ -1,4 +1,5 @@
 import { DailyCatholicQuote, GroundingSource, SavedTopic } from "../types";
+import { DAILY_CATHOLIC_QUOTES } from "../data/dailyQuotesData";
 
 export interface ChatResponseWithGrounding {
   reply: string;
@@ -310,8 +311,17 @@ export async function fetchDailyQuotes(
     console.debug("Daily quotes API unavailable, using cached wisdom:", err);
   }
 
+  let filtered = DAILY_CATHOLIC_QUOTES;
+  if (category === "scientists") {
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "catholic_scientist");
+  } else if (category === "fathers") {
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "church_father");
+  } else if (category === "apologists") {
+    filtered = DAILY_CATHOLIC_QUOTES.filter((q) => q.category === "apologetic_titan");
+  }
+
   return {
-    quotes: [],
+    quotes: filtered,
     liveGrounded: false,
   };
 }

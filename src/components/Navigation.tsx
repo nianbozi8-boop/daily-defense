@@ -101,7 +101,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               <button
                 onClick={onOpenQuotes}
                 className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-[#c9a84c]/20 hover:bg-[#c9a84c]/30 text-[#f0d080] border border-[#c9a84c]/30 text-xs font-bold transition cursor-pointer"
-                title="Open Catholic Pillars & Science Quotes Archive"
+                title="Open Catholic Pillars & Science Daily Quotes"
               >
                 <Quote className="w-3.5 h-3.5 text-[#f0d080]" />
                 <span>Pillars & Science</span>

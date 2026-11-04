@@ -145,14 +145,14 @@ export const DailyQuotesCard: React.FC<DailyQuotesCardProps> = ({ onOpenQuotesPa
           </div>
         </div>
 
-        {/* Header Right Action: Open Dedicated Archive Page */}
+        {/* Header Right Action: Open Dedicated Daily Quotes Page */}
         {onOpenQuotesPage && (
           <button
             onClick={onOpenQuotesPage}
             className="self-start sm:self-auto flex items-center gap-1.5 px-3 py-1.5 bg-[#c9a84c] hover:bg-[#b8953f] active:bg-[#a68435] text-[#1e3a8a] text-xs font-bold rounded-xl transition shadow-2xs cursor-pointer shrink-0"
-            title="Browse all quotes and search Catholic science pioneers"
+            title="Explore today's Catholic Pillars & Science quotes"
           >
-            <span>Full Archive</span>
+            <span>Daily Pillars</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
         )}
@@ -183,16 +183,10 @@ export const DailyQuotesCard: React.FC<DailyQuotesCardProps> = ({ onOpenQuotesPa
               </span>
             </div>
 
-            {liveGrounded ? (
-              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                <Globe className="w-2.5 h-2.5" />
-                <span>Web Grounded</span>
-              </span>
-            ) : (
-              <span className="text-[10px] font-semibold text-gray-400">
-                Curated Daily Pillar
-              </span>
-            )}
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#1e3a8a] bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded-full">
+              <Sparkles className="w-2.5 h-2.5 text-[#c9a84c]" />
+              <span>Daily Reflection</span>
+            </span>
           </div>
 
           {/* Quote Body */}
@@ -301,7 +295,7 @@ export const DailyQuotesCard: React.FC<DailyQuotesCardProps> = ({ onOpenQuotesPa
                 onClick={onOpenQuotesPage}
                 className="text-xs font-semibold text-[#1e3a8a] hover:text-blue-900 flex items-center gap-1 cursor-pointer transition"
               >
-                <span>Browse All Quotes Archive</span>
+                <span>Explore Today's Pillars</span>
                 <ChevronRight className="w-3.5 h-3.5 text-[#c9a84c]" />
               </button>
             )}
