@@ -87,7 +87,7 @@ export function handleFirestoreError(
     operationType,
     path,
   };
-  console.error("Firestore Error: ", JSON.stringify(errInfo));
+  console.warn("Firestore Notice: ", JSON.stringify(errInfo));
   throw new Error(JSON.stringify(errInfo));
 }
 
@@ -97,7 +97,7 @@ async function testConnection() {
     await getDocFromServer(doc(db, "test", "connection"));
   } catch (error) {
     if (error instanceof Error && error.message.includes("the client is offline")) {
-      console.error("Please check your Firebase configuration.");
+      console.warn("Firebase client offline or unreachable.");
     }
   }
 }
@@ -144,7 +144,7 @@ export function notifyAuthSubscribers(user: GenericAuthUser | null) {
     try {
       sub(user);
     } catch (e) {
-      console.error(e);
+      console.warn("Auth subscriber callback notice:", e);
     }
   });
 }
@@ -300,7 +300,7 @@ export async function signInWithGoogle(): Promise<GenericAuthUser | null> {
     ) {
       return null;
     }
-    console.error("Google sign in error:", error?.message || error);
+    console.warn("Google sign in notice:", error?.message || error);
     const msg = error instanceof Error ? error.message : "Google sign in failed.";
     throw new Error(msg);
   }

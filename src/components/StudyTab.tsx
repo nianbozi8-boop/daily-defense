@@ -6,7 +6,6 @@ import { useApp } from "../context/AppContext";
 interface StudyTabProps {
   onOpenBible: (initialVerse?: string) => void;
   onOpenLibrary: () => void;
-  onOpenGenerator: () => void;
   onOpenNotes: () => void;
   onOpenQuotes?: () => void;
 }
@@ -14,11 +13,10 @@ interface StudyTabProps {
 export const StudyTab: React.FC<StudyTabProps> = ({
   onOpenBible,
   onOpenLibrary,
-  onOpenGenerator,
   onOpenNotes,
   onOpenQuotes,
 }) => {
-  const { notes, savedTopics } = useApp();
+  const { notes } = useApp();
 
   return (
     <div className="space-y-5 sm:space-y-6">
@@ -38,7 +36,7 @@ export const StudyTab: React.FC<StudyTabProps> = ({
       </div>
 
       <div className="max-w-4xl mx-auto space-y-6 px-1">
-        {/* 4 Study Hub Modules */}
+        {/* Study Hub Modules */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Card 1: Bible Study */}
           <div
@@ -84,29 +82,7 @@ export const StudyTab: React.FC<StudyTabProps> = ({
             </div>
           </div>
 
-          {/* Card 3: Topic Generator */}
-          <div
-            onClick={onOpenGenerator}
-            className="group bg-white hover:bg-[#fcfaf7] border border-[#e2ddd6] hover:border-amber-500 rounded-2xl p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"
-          >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3 group-hover:scale-105 transition">
-                <Sparkles className="w-5 h-5 text-amber-600" />
-              </div>
-              <h3 className="font-bold text-base text-gray-900 mb-1">
-                AI Topic Generator
-              </h3>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                Input any anti-Catholic objection to generate a complete custom study guide with Scripture, arguments, and patristics.
-              </p>
-            </div>
-            <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-xs font-semibold text-amber-700">
-              <span>{savedTopics.length} saved custom topics</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
-            </div>
-          </div>
-
-          {/* Card 4: Personal Notes */}
+          {/* Card 3: Personal Notes */}
           <div
             onClick={onOpenNotes}
             className="group bg-white hover:bg-[#fcfaf7] border border-[#e2ddd6] hover:border-emerald-600 rounded-2xl p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between"

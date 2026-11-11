@@ -6,7 +6,6 @@ import { TopicDetailModal } from "./components/TopicDetailModal";
 import { StudyTab } from "./components/StudyTab";
 import { BibleStudyView } from "./components/BibleStudyView";
 import { CatholicLibraryView } from "./components/CatholicLibraryView";
-import { TopicGeneratorView } from "./components/TopicGeneratorView";
 import { NotesView } from "./components/NotesView";
 import { ApologeticsChatView } from "./components/ApologeticsChatView";
 import { QuotesView } from "./components/QuotesView";
@@ -19,7 +18,6 @@ import { TopicContent, SavedTopic } from "./types";
 export type SubViewType =
   | "bible"
   | "library"
-  | "generator"
   | "notes"
   | "apologetics-chat"
   | "quotes"
@@ -54,8 +52,6 @@ function MainApp() {
         return "Bible Study";
       case "library":
         return "Catholic Library";
-      case "generator":
-        return "Topic Generator";
       case "notes":
         return "Note Storage";
       case "apologetics-chat":
@@ -91,7 +87,6 @@ function MainApp() {
         {/* Subviews rendered on top of active tab */}
         {subView === "bible" && <BibleStudyView initialVerse={initialVerse} />}
         {subView === "library" && <CatholicLibraryView />}
-        {subView === "generator" && <TopicGeneratorView />}
         {subView === "notes" && <NotesView />}
         {subView === "apologetics-chat" && (
           <ApologeticsChatView initialPrompt={initialChatPrompt} />
@@ -113,7 +108,6 @@ function MainApp() {
             {activeTab === "topics" && (
               <TopicsTab
                 onSelectTopic={(t) => setSelectedTopic(t)}
-                onOpenGenerator={() => setSubView("generator")}
                 onOpenQuotes={handleOpenQuotes}
               />
             )}
@@ -122,7 +116,6 @@ function MainApp() {
               <StudyTab
                 onOpenBible={handleOpenBible}
                 onOpenLibrary={() => setSubView("library")}
-                onOpenGenerator={() => setSubView("generator")}
                 onOpenNotes={() => setSubView("notes")}
                 onOpenQuotes={handleOpenQuotes}
               />

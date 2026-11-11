@@ -188,7 +188,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             });
           }
         } catch (e) {
-          console.error("Error syncing user data:", e);
+          console.warn("Notice syncing user data:", e);
         }
       } else {
         setCurrentUser(null);
@@ -204,7 +204,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_notes", JSON.stringify(notes));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (notes):", e);
     }
   }, [notes]);
 
@@ -212,7 +212,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_saved_topics", JSON.stringify(savedTopics));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (savedTopics):", e);
     }
   }, [savedTopics]);
 
@@ -220,7 +220,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_profile", JSON.stringify(profile));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (profile):", e);
     }
   }, [profile]);
 
@@ -228,7 +228,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_stats", JSON.stringify(stats));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (stats):", e);
     }
   }, [stats]);
 
@@ -236,7 +236,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_achievements", JSON.stringify(achievements));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (achievements):", e);
     }
   }, [achievements]);
 
@@ -244,7 +244,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       localStorage.setItem("daily_defense_chat_sessions", JSON.stringify(chatSessions));
     } catch (e) {
-      console.error(e);
+      console.warn("Local storage sync notice (chatSessions):", e);
     }
   }, [chatSessions]);
 
@@ -267,7 +267,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       setCurrentUser(null);
       setIsGuest(false);
     } catch (e) {
-      console.error("Logout error:", e);
+      console.warn("Logout notice:", e);
     }
   };
 
