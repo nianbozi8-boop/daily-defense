@@ -1,4 +1,4 @@
-import { DailyCatholicQuote } from "../types";
+import type { DailyCatholicQuote } from "../types/index.ts";
 
 export const DAILY_CATHOLIC_QUOTES: DailyCatholicQuote[] = [
   // =========================================================================

@@ -2,6 +2,7 @@ import http from "http";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import { app } from "./api/index.ts";
@@ -10,7 +11,9 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const isProd = process.env.NODE_ENV === "production";
+const distIndex = path.resolve(__dirname, "dist", "index.html");
+const hasDist = fs.existsSync(distIndex);
+const isProd = process.env.NODE_ENV === "production" || hasDist;
 
 function getPort(): number {
   const portArgIndex = process.argv.indexOf("--port");
@@ -18,7 +21,6 @@ function getPort(): number {
     const val = Number(process.argv[portArgIndex + 1]);
     if (!isNaN(val) && val > 0) return val;
   }
-  if (!isProd) return 3000;
   return Number(process.env.PORT) || 3000;
 }
 const PORT = getPort();
@@ -26,7 +28,7 @@ const PORT = getPort();
 async function startServer() {
   const httpServer = http.createServer(app);
 
-  // Mount Vite middleware in development; serve dist in production
+  // Mount Vite middleware only in dev mode when dist does not exist
   if (!isProd) {
     const vite = await createViteServer({
       server: {
@@ -41,7 +43,7 @@ async function startServer() {
   } else {
     app.use(express.static(path.resolve(__dirname, "dist")));
     app.get("*", (_req, res) => {
-      res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+      res.sendFile(distIndex);
     });
   }
 
